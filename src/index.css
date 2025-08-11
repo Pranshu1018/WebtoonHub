@@ -1,0 +1,124 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Dark Neon Theme */
+    --background: 0 0% 8%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 12%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 12%;
+    --popover-foreground: 0 0% 98%;
+
+    /* Primary: Electric Neon Purple */
+    --primary: 271 100% 70%;
+    --primary-foreground: 0 0% 8%;
+    --primary-glow: 271 100% 80%;
+
+    /* Secondary: Dark Gray */
+    --secondary: 0 0% 20%;
+    --secondary-foreground: 271 100% 70%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 65%;
+
+    /* Accent: Electric Cyan */
+    --accent: 180 100% 60%;
+    --accent-foreground: 0 0% 8%;
+
+    --destructive: 0 100% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 25%;
+    --input: 0 0% 20%;
+    --ring: 271 100% 70%;
+
+    /* Neon Gradients */
+    --hero-gradient: linear-gradient(135deg, hsl(271 100% 70%), hsl(180 100% 60%));
+    --card-gradient: linear-gradient(135deg, hsl(0 0% 12% / 0.9), hsl(0 0% 8%));
+    --text-gradient: linear-gradient(135deg, hsl(271 100% 70%), hsl(180 100% 60%));
+    
+    /* Neon Shadows */
+    --shadow-card: 0 4px 20px hsl(271 100% 70% / 0.3);
+    --shadow-hero: 0 20px 60px hsl(271 100% 70% / 0.5);
+    
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --transition-spring: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 0 0% 4%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 8%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 8%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 271 100% 75%;
+    --primary-foreground: 0 0% 4%;
+
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 10%;
+    --muted-foreground: 0 0% 70%;
+
+    --accent: 180 100% 65%;
+    --accent-foreground: 0 0% 4%;
+
+    --destructive: 0 100% 65%;
+    --destructive-foreground: 0 0% 4%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 15%;
+    --ring: 271 100% 75%;
+    --sidebar-background: 0 0% 4%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 271 100% 75%;
+    --sidebar-primary-foreground: 0 0% 4%;
+    --sidebar-accent: 0 0% 15%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 0 0% 20%;
+    --sidebar-ring: 271 100% 75%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
