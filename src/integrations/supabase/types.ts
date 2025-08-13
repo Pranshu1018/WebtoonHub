@@ -129,27 +129,43 @@ export type Database = {
           },
         ]
       }
-      favorites: {
-        Row: {
-          comic_slug: string
-          created_at: string
-          id: string
-          user_id: string
-        }
-        Insert: {
-          comic_slug: string
-          created_at?: string
-          id?: string
-          user_id: string
-        }
-        Update: {
-          comic_slug?: string
-          created_at?: string
-          id?: string
-          user_id?: string
-        }
-        Relationships: []
-      }
+      // In the Tables section
+favorites: {
+  Row: {
+    id: string;
+    created_at: string;
+    user_id: string;
+    comic_id: string; // Add this foreign key
+  };
+  Insert: {
+    id?: string;
+    created_at?: string;
+    user_id: string;
+    comic_id: string; // Add this
+  };
+  Update: {
+    id?: string;
+    created_at?: string;
+    user_id?: string;
+    comic_id?: string; // Add this
+  };
+  Relationships: [
+    {
+      foreignKeyName: "favorites_comic_id_fkey";
+      columns: ["comic_id"];
+      isOneToOne: false;
+      referencedRelation: "comics";
+      referencedColumns: ["id"];
+    },
+    {
+      foreignKeyName: "favorites_user_id_fkey";
+      columns: ["user_id"];
+      isOneToOne: false;
+      referencedRelation: "profiles";
+      referencedColumns: ["user_id"];
+    }
+  ];
+}
       profiles: {
         Row: {
           achievements: Json | null

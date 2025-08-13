@@ -24,8 +24,7 @@ export function Navigation() {
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
-      // For now, just navigate to home with search params
-      navigate(`/?search=${encodeURIComponent(searchQuery)}`);
+      navigate(`/search?q=${encodeURIComponent(searchQuery)}`);
       setShowSearch(false);
       setSearchQuery("");
     }
@@ -69,7 +68,7 @@ export function Navigation() {
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
               </Link>
               {user && (
-                <Link to="/?view=favorites" className="text-muted-foreground hover:text-primary transition-all duration-300 relative group">
+                <Link to="/favorites" className="text-muted-foreground hover:text-primary transition-all duration-300 relative group">
                   Favorites
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
                 </Link>
@@ -80,24 +79,30 @@ export function Navigation() {
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
                 </Link>
               )}
-              <a href="#trending" className="text-muted-foreground hover:text-primary transition-all duration-300 relative group">
+              <Link to="/trending" className="text-muted-foreground hover:text-primary transition-all duration-300 relative group">
                 Trending
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
-              </a>
+              </Link>
               {user && (
                 <Link to="/rewards" className="text-muted-foreground hover:text-primary transition-all duration-300 relative group flex items-center">
                   🏆 Rewards
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
                 </Link>
               )}
-              <a href="#genres" className="text-muted-foreground hover:text-primary transition-all duration-300 relative group">
+              <Link to="/genres" className="text-muted-foreground hover:text-primary transition-all duration-300 relative group">
                 Genres
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
-              </a>
-              <a href="#new-releases" className="text-muted-foreground hover:text-primary transition-all duration-300 relative group">
+              </Link>
+              <Link to="/new-releases" className="text-muted-foreground hover:text-primary transition-all duration-300 relative group">
                 New Releases
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
-              </a>
+              </Link>
+              {user && (
+                <Link to="/notifications" className="text-muted-foreground hover:text-primary transition-all duration-300 relative group">
+                  <Bell className="w-5 h-5" />
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                </Link>
+              )}
             </div>
 
             {/* Search and Actions */}
@@ -112,7 +117,12 @@ export function Navigation() {
               </Button>
               
               {user && (
-                <Button variant="ghost" size="icon" className="relative hover:bg-primary/20 hover:text-primary transition-all duration-300">
+                <Button 
+                  variant="ghost" 
+                  size="icon" 
+                  className="relative hover:bg-primary/20 hover:text-primary transition-all duration-300"
+                  onClick={() => navigate('/notifications')}
+                >
                   <Bell className="w-5 h-5" />
                   <Badge className="absolute -top-1 -right-1 w-2 h-2 p-0 bg-accent animate-pulse" />
                 </Button>
@@ -134,6 +144,10 @@ export function Navigation() {
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end">
+                    <DropdownMenuItem onClick={() => navigate('/profile')}>
+                      <User className="w-4 h-4 mr-2" />
+                      Profile
+                    </DropdownMenuItem>
                     <DropdownMenuItem onClick={handleSignOut}>
                       <LogOut className="w-4 h-4 mr-2" />
                       Sign Out
@@ -177,7 +191,7 @@ export function Navigation() {
               </Link>
               {user && (
                 <Link 
-                  to="/?view=favorites" 
+                  to="/favorites" 
                   className="block text-muted-foreground hover:text-primary transition-colors"
                   onClick={() => setShowMobileMenu(false)}
                 >
@@ -194,27 +208,54 @@ export function Navigation() {
                   Publisher
                 </Link>
               )}
-              <a 
-                href="#trending" 
+              <Link 
+                to="/trending" 
                 className="block text-muted-foreground hover:text-primary transition-colors"
                 onClick={() => setShowMobileMenu(false)}
               >
                 Trending
-              </a>
-              <a 
-                href="#genres" 
+              </Link>
+              {user && (
+                <Link 
+                  to="/rewards" 
+                  className="block text-muted-foreground hover:text-primary transition-colors"
+                  onClick={() => setShowMobileMenu(false)}
+                >
+                  🏆 Rewards
+                </Link>
+              )}
+              <Link 
+                to="/genres" 
                 className="block text-muted-foreground hover:text-primary transition-colors"
                 onClick={() => setShowMobileMenu(false)}
               >
                 Genres
-              </a>
-              <a 
-                href="#new-releases" 
+              </Link>
+              <Link 
+                to="/new-releases" 
                 className="block text-muted-foreground hover:text-primary transition-colors"
                 onClick={() => setShowMobileMenu(false)}
               >
                 New Releases
-              </a>
+              </Link>
+              {user && (
+                <Link 
+                  to="/notifications" 
+                  className="block text-muted-foreground hover:text-primary transition-colors"
+                  onClick={() => setShowMobileMenu(false)}
+                >
+                  Notifications
+                </Link>
+              )}
+              {user && (
+                <Link 
+                  to="/profile" 
+                  className="block text-muted-foreground hover:text-primary transition-colors"
+                  onClick={() => setShowMobileMenu(false)}
+                >
+                  Profile
+                </Link>
+              )}
               <Button 
                 variant="ghost" 
                 className="w-full justify-start"

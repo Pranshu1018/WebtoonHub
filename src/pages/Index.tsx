@@ -1,25 +1,20 @@
+// Index.tsx
 import { Navigation } from "@/components/Navigation";
 import { HeroSection } from "@/components/HeroSection";
 import { FeaturedSection } from "@/components/FeaturedSection";
-import { UserFavorites } from "@/components/UserFavorites";
 import { ContinueReading } from "@/components/ContinueReading";
 import { Footer } from "@/components/Footer";
 import { useSearchParams } from "react-router-dom";
 
 const Index = () => {
   const [searchParams] = useSearchParams();
-  const view = searchParams.get('view');
   const searchQuery = searchParams.get('search');
 
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
       
-      {view === 'favorites' ? (
-        <div className="container mx-auto px-6 py-12">
-          <UserFavorites />
-        </div>
-      ) : searchQuery ? (
+      {searchQuery ? (
         <div className="container mx-auto px-6 py-12">
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold mb-2">Search Results</h2>
